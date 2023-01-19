@@ -1,0 +1,20 @@
+1/18:
+[x] Insert data
+[] Searches
+	[] Name is mentioned in article text
+	[x] Name is mentioned in tags
+3. Group by
+
+
+# Search for queries about "College" and "Caeleb Dressel"
+(
+	s.index(ARTICLE_INDEX)
+    .query("match", **{"tags.term": "College"})
+    .query("match_phrase", **{"tags.term": "Caeleb Dressel"})
+)
+
+# Search for queries about "College" or "Caeleb Dressel"
+.query(
+    Q("match", **{"tags.term": "College"}) | 
+    Q("match_phrase", **{"tags.term": "Caeleb Dressel"})
+)
